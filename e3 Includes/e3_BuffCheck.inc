@@ -210,57 +210,33 @@ SUB buffSelf
 SUB check_AuraBuffs(buffName, buffTarget)
 /if (${Debug} || ${Debug_BuffCheck}) /echo |- check_AuraBuffs ==>
 
-	/declare buffId int local
 	/declare result string local
+	
 	/if (${buffName.Equal[Aura of the Pious]}) {
-		/if (!${NetBots[${buffTarget}].ShortBuff.Find[8496]}) {
+	
+	} else /if (${buffName.Equal[Bloodlust Aura]}) {
+	
+	} else /if (${buffName.Equal[Champion's Aura]}) {
+	
+	} else /if (${buffName.Equal[Aura of the Muse]}) {
+	
+	} else /if (${buffName.Equal[Aura of Life]}) {
+	
+	} else /if (${buffName.Equal[Illusionist's Aura]}) {
+	
+	} else {
+		/varset result NotAura
+	}
+	
+	/if (${result.NotEqual[NotAura]}) {
+		|- Checking $Spawn during zoning sometime causes aura to cast upon zone in
+		/if (${Spawn[${buffName}].ID} == NULL) {
 			/varset result Aura NEED
 		} else {
 			/varset result Aura DO NOT NEED
 		}
-	} else {
-		/if (${buffName.Equal[Bloodlust Aura]}) {
-			/if (!${NetBots[${buffTarget}].ShortBuff.Find[8478]}) {
-				/varset result Aura NEED
-			} else {
-				/varset result Aura DO NOT NEED
-			}
-		} else {
-			/if (${buffName.Equal[Champion's Aura]}) {
-				/if (!${NetBots[${buffTarget}].ShortBuff.Find[8469]}) {
-					/varset result Aura NEED
-				} else {
-					/varset result Aura DO NOT NEED
-				}
-			} else {
-				/if (${buffName.Equal[Aura of the Muse]}) {
-					/if (!${NetBots[${buffTarget}].ShortBuff.Find[8489]}) {
-						/varset result Aura NEED
-					} else {
-						/varset result Aura DO NOT NEED
-					}
-				} else {
-					/if (${buffName.Equal[Aura of Life]}) {
-						/if (!${NetBots[${buffTarget}].ShortBuff.Find[8500]}) {
-							/varset result Aura NEED
-						} else {
-							/varset result Aura DO NOT NEED
-						}
-					} else {
-						/if (${buffName.Equal[Illusionist's Aura]}) {
-							/if (!${NetBots[${buffTarget}].ShortBuff.Find[8510]}) {
-								/varset result Aura NEED
-							} else {
-								/varset result Aura DO NOT NEED
-							}
-						} else {
-							/varset result NotAura
-						}
-					}
-				}
-			}
-		}
 	}
+	
 	/if (${Debug} || ${Debug_BuffCheck}) /echo Checking ${buffName} ::::: Result ${result}
 	
 /if (${Debug} || ${Debug_BuffCheck}) /echo <== check_AuraBuffs -|
