@@ -218,7 +218,12 @@ SUB buffPet
 			/call argueString buffname "${petBuffs[${i}]}"
 			/varset buffName ${Macro.Return}
 		}
-		
+		| JC: 12/23/2019 - No CheckFor on pet buffs (needed so Mage Rathe's Strength works
+		| /CheckFor Check.
+		/if (${petBuffs[${i}].Find[/CheckFor|]}) {
+			/call argueString CheckFor "${petBuffs[${i}]}"
+			/varset buffName ${Macro.Return}
+		}
 		| Check if the buff will stack
 		/if (!${Spell[${buffName}].StacksPet}) {
 			/if (${Debug} || ${Debug_Pets}) /echo |- buffPet -| [${castName}] will not stack, skipping.

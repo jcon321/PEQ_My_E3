@@ -1307,7 +1307,7 @@ SUB check_Burns
 |----------------------------------------------------|
 |- Engages QuickBurns listed in the Character_Ini.	-|
 |----------------------------------------------------|
-#event QuickBurn "<#1#> Quick Burn"
+#event QuickBurn "<#1#> Quick Burns"
 SUB event_QuickBurn(line, ChatSender)
 /if (${Debug} || ${Debug_Assists}) /echo |- event_QuickBurn ==>
 
@@ -1338,7 +1338,7 @@ SUB event_QuickBurn(line, ChatSender)
 |----------------------------------------------------|
 |- Engages FullBurns listed in the Character_Ini.	-|
 |----------------------------------------------------|
-#event FullBurn "<#1#> Full Burn"
+#event FullBurn "<#1#> Full Burns"
 SUB event_FullBurn(line, ChatSender)
 /if (${Debug} || ${Debug_Assists}) /echo |- event_FullBurn ==>
 
