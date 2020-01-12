@@ -37,6 +37,13 @@ SUB check_Zone
 	| Check Auto-Melody
 	/if (${Defined[autoMelody]} && !${songSet.Length}) /playmelody ${autoMelody} /only|Me
 
+	| Handle Pet Hold
+	/if (${Me.Pet.ID}) {
+		/squelch /pet follow
+		/squelch /pet taunt off
+		/squelch /pet ghold on
+	}
+
 /if (${Debug} || ${Debug_Background}) /echo <== check_Zone -|
 /RETURN
 
