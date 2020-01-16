@@ -44,10 +44,12 @@ sub check_DivineArb
 				/if (${Bool[${NetBots[${Group.Member[${i}]}]}]} && ${NetBots[${Group.Member[${i}]}].PctHPs} < ${DivineArb_Pct} || ${Spawn[pc ${Group.Member[${i}]}].PctHPs} < ${DivineArb_Pct}) {
 					
 					/if (${NetBots[${Group.Member[${i}]}].PctHPs}<${DivineArb_Pct}) {
-						/if (${FindItemCount[Ancient Shield of the Divine]} && !${FindItem[Ancient Shield of the Divine].Timer} && !${itemTimer_${FindItem[=Ancient Shield of the Divine].ID}}) {
-							/call e3_Cast ${Me.ID} "Ancient Shield of the Divine"
+						/if (${FindItemCount[Aegis of Superior Divinity]} && !${FindItem[Aegis of Superior Divinity].Timer} && !${itemTimer_${FindItem[=Aegis of Superior Divinity].ID}}) {
+							/call e3_Cast ${Me.ID} "Aegis of Superior Divinity"
 						} else /if (${Me.AltAbilityReady[Divine Arbitration]}) {
 							/call e3_Cast ${Me.ID} "Divine Arbitration"
+						} else /if (${FindItemCount[Harmony of the Soul]} && !${FindItem[Harmony of the Soul].Timer} && !${itemTimer_${FindItem[=Harmony of the Soul].ID}}) {
+							/call e3_Cast ${Me.ID} "Harmony of the Soul"
 						}
 					}
 				}
