@@ -188,22 +188,10 @@ SUB Wait4Rez(functionCall)
 			/if (${i}<50) /goto :autoxplootlag
 		}
 		
-	|-----------------------------------------------------------------------------------------Loot Items one by one.
-		/if (${lootTotal}) {
-			/for i 1 to ${lootTotal}
-			/if (${Me.State.Equal[BIND]} && ${Corpse.CleanName.Equal[${Me.CleanName}'s corpse]}) {
-					/delay 1s ${InvSlot[loot${i}].Item.ID}
-					
-				|--------------------------------------------Call rez_loot_Handle, pass the slotNumber to loot from.
-					/call rez_loot_Handle ${i}	
-				/next i
-			}
-		}
-		
-	|---------------------------------------------------------If I've tried to loot all the items, close the corpse.
 
-		/notify LootWnd DoneButton leftmouseup 
-		/delay 1s !${Window[LootWnd].Open}
+	|---------------------------------------------------------------------------------------- New Loot All Button
+		/notify LootWnd LootAllButton leftmouseup
+		/delay 30s !${Window[LootWnd].Open}
 		
 		
 	|---------------------------------------------------------------------------Check you don't still have a corpse.

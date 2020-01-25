@@ -39,9 +39,9 @@ SUB check_Zone
 
 	| Handle Pet Hold
 	/if (${Me.Pet.ID}) {
-		/squelch /pet follow
-		/squelch /pet taunt off
-		/squelch /pet ghold on
+		/pet follow
+		/pet taunt off
+		/pet ghold on
 	}
 
 /if (${Debug} || ${Debug_Background}) /echo <== check_Zone -|
