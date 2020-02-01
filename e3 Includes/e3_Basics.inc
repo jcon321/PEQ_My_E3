@@ -868,6 +868,37 @@ SUB EVENT_FindItems(line, ChatSender, eventParams)
 /if (${Debug} || ${Debug_Basics}) /echo <== EVENT_FindItems -|
 /RETURN
 
+|------------------------------------------------------------------|
+|- Reports which character lacks a specified item                 -|
+|- 'Name' must be the full itemname, accepts item links as 'Name' -|
+|- Use, /bc FindMissingItem 'Name', /echo FindMissingItem 'Name'	-|
+|------------------------------------------------------------------|
+#EVENT FindMissingItem "<#1#> Find Missing Item #2#"
+SUB EVENT_FindMissingItem(line, ChatSender, eventParams)
+/if (${Debug} || ${Debug_Basics}) /echo |- EVENT_FindMissingItem ==>
+
+	| -Verify the event
+	/call verifyEvent "${ChatSender}" "${line}"
+	/if (${Defined[ChatSender]}) /if (${Defined[ChatSender]}) /varset ChatSender ${Macro.Return.Arg[1,_]}
+	|    |-----------Valid User----------|    |--------Included Bot-----------|
+	/if (${Bool[${Macro.Return.Arg[2,_]}]} && ${Bool[${Macro.Return.Arg[3,_]}]}) {
+	
+		| -Declare counting variables.
+		/declare i int local
+		/declare e int local
+		/declare itemName string local
+		/declare ItemToFind string local ${eventParams.Arg[1,-]}
+
+		/if (${FindItemCount[${ItemToFind}]} || ${FindItemBankCount[${ItemToFind}]} || ${Cursor.Name.Equal[${ItemToFind}]}) {
+			
+			
+		} else {
+			/docommand ${ChatToggle} >>> Did not find [${ItemToFind}]
+		}
+	}
+
+/if (${Debug} || ${Debug_Basics}) /echo <== EVENT_FindMissingItem -|
+/RETURN
 
 
 |------------------------------------------------------------|
@@ -1776,7 +1807,8 @@ SUB EVENT_reportMana(line,ChatSender)
 	/if (${Debug} || ${Debug_Basics}) /echo <== EVENT_reportMana [${Me.PctMana}m] -|
 }
 /RETURN
-
+
+
 
 Sub basics_Setup
 /call INItoVar "${advSettings_Ini},Debug,Debug Basics (On/Off)" Debug_Basics bool outer
@@ -1915,6 +1947,7 @@ Sub basics_Aliases
 	/squelch /alias /CheckBuff /bc Check Buff
 	/squelch /alias /FindItem /bc Find Item
 	/noparse /squelch /alias /FindIt /bc Find Item ${Cursor}
+	/squelch /alias /fmi /bc Find Missing Item
 	/squelch /alias /CountBots /echo Head Count
 	/squelch /alias /Count /echo Head Count
 	/squelch /alias /BotCount /echo Head Count
