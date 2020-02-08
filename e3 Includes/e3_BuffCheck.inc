@@ -225,6 +225,8 @@ SUB check_AuraBuffs(buffName, buffTarget)
 	} else /if (${buffName.Equal[Illusionist's Aura]}) {
 	
 	} else /if (${buffName.Equal[Blessed Aura]}) {
+
+	} else /if (${buffName.Equal[Master's Aura]}) {
 	
 	} else {
 		/varset result NotAura
