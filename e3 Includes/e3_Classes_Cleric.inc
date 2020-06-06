@@ -153,7 +153,9 @@ SUB EVENT_AE_Rez
 /if (${Select[${Me.Class},Cleric,Paladin]}) {
 /if (${Debug} || ${Debug_Basics}) /echo |- EVENT_AE_Rez ==>
 	
-	/if (!${SpawnCount['s radius 100]}) {
+	/bca //consent ${Me.Name}
+	
+	/if (!${SpawnCount[corpse radius 100]}) {
 		/echo I couldn't summon any corpses to ressurect...
 	} else {
 	
@@ -164,15 +166,15 @@ SUB EVENT_AE_Rez
 		/declare rezzable string outer
 		/declare i int local
 		
-		/for i 1 to ${SpawnCount['s radius 100]}
+		/for i 1 to ${SpawnCount[corpse radius 100]}
 		
-			/varset playerName ${NearestSpawn[${i},'s radius 100].CleanName}
+			/varset playerName ${NearestSpawn[${i},corpse radius 100].CleanName}
 			/varset playerName ${playerName.Arg[1,']}
-			/varset corpseID ${NearestSpawn[${i},'s radius 100].ID}
+			/varset corpseID ${NearestSpawn[${i},corpse radius 100].ID}
 			/varset miscTimer 30
 			/varset rezzable UNKNOWN
 			
-			/if (!${playerName.Find[_]}) {
+			/if (!${playerName.Find[_]} && !${playerName.Find[Aura]}) {
 			
 				| Check if the corpse is rezzable
 				/call TrueTarget ${corpseID}
